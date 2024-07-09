@@ -63,5 +63,7 @@ dependencies {
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     implementation("androidx.webkit:webkit:1.4.0")
     implementation("androidx.browser:browser:1.4.0")
+    implementation ("com.google.android.material:material:1.4.0")
+
 
 }

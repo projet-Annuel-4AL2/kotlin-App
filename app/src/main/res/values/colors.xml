@@ -29,4 +29,9 @@
 
     <color name="light_blue">#304C56</color>
 
+    <color name="grey">#CBCBCB</color>
+    <color name="bottom_navigation_selected">#FFFFFF</color>
+    <color name="bottom_navigation_unselected">#CBCBCB</color>
+
+
 </resources>
