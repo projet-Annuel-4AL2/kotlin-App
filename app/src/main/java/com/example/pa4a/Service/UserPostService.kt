@@ -8,6 +8,8 @@ import com.example.pa4a.dataModel.UserFollowersResponse
 import com.example.pa4a.dataModel.UserFollowingsResponse
 import com.example.pa4a.dataModel.UserIdRequest
 import com.example.pa4a.dataModel.UserIdResponse
+import com.example.pa4a.dataModel.UserPostResponse
+import com.example.pa4a.dataModel.UserPostsResponse
 import com.example.pa4a.dataModel.UserResponse
 import com.example.pa4a.dataModel.UsersResponse
 import retrofit2.Call
@@ -17,15 +19,7 @@ import retrofit2.http.Path
 import retrofit2.http.DELETE
 import retrofit2.http.GET
 
-interface UserService {
-    @GET("users/")
-    fun getUsers(): Call<List<UserResponse>>
-
-    @GET("users/{id}/followers/")
-    fun getUserFollowers(@Path("id") id: String): Call<UserFollowersResponse>
-
-    @GET("users/{id}/followings/")
-    fun getUserFollowings(@Path("id") id: String): Call<UserFollowingsResponse>
-
-
+interface UserPostService {
+    @GET("post/")
+    fun getUserPosts(): Call<List<UserPostResponse>>
 }

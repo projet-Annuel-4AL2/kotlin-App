@@ -1,5 +1,7 @@
 package com.example.pa4a.api
+import com.example.pa4a.service.GroupService
 import com.example.pa4a.service.AuthService
+import com.example.pa4a.service.UserPostService
 import com.example.pa4a.service.UserService
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -18,6 +20,14 @@ object ApiClient {
 
     val userService: UserService by lazy {
         retrofit.create(UserService::class.java)
+    }
+
+    val groupService: GroupService by lazy {
+        retrofit.create(GroupService::class.java)
+    }
+
+    val userPostService: UserPostService by lazy {
+        retrofit.create(UserPostService::class.java)
     }
 
 }

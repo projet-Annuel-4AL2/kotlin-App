@@ -17,6 +17,12 @@ class MainActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        mainViewModel.user.observe(this, { userResponse ->
+            println("Observed user response: $userResponse")
+        })
+
+        mainViewModel.getUser()
+
         mainViewModel.users.observe(this, { usersResponse ->
             println("Observed users response: $usersResponse")
         })
@@ -24,13 +30,48 @@ class MainActivity : AppCompatActivity() {
         mainViewModel.getUsers()
 
 
-        //afficher tout ce qui est dans la session
-        println("${sessionManager}")
+        mainViewModel.groups.observe(this, { groupsResponse ->
+            println("Observed groups response: $groupsResponse")
+        })
+
+        mainViewModel.getGroups()
+
+        mainViewModel.userFollowers.observe(this, { UsersResponse ->
+            println("Observed user followers response: $UsersResponse")
+        })
+
+        mainViewModel.getUserFollowers()
+
+        mainViewModel.userFollowings.observe(this, { UsersResponse ->
+            println("Observed user followings response: $UsersResponse")
+        })
+
+        mainViewModel.getUserFollowings()
+
+
+        mainViewModel.userPosts.observe(this, { userPostsResponse ->
+            println("Observed user posts response: $userPostsResponse")
+        })
+
+        mainViewModel.getUserPosts()
+
 
         val user = sessionManager.userInfo
         val users = sessionManager.users
+        val groups = sessionManager.groups
+        val userFollowers = sessionManager.userFollowers
+        val userFollowings = sessionManager.userFollowings
+        val userPosts = sessionManager.userPosts
+
         println("User info: $user")
         println("User all: $users")
+        println("Groups all: $groups")
+        println("User followers: $userFollowers")
+        println("User followings: $userFollowings")
+        println("User posts: $userPosts")
+
+        //val data = sessionManager.getDataBasics()
+        //println("Data basics: $data")
 
     }
 //recuperer le token en session et ensuite utiliser la function userId

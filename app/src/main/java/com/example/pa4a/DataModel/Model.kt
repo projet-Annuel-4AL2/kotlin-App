@@ -29,3 +29,46 @@ data class UserResponse(
 data class UsersResponse(
     val users: List<UserResponse>
 )
+
+data class GroupResponse(
+    @SerializedName("id") val id: String,
+    @SerializedName("name") val name: String,
+    @SerializedName("admin") val admin: String,
+    @SerializedName("description") val description: String,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("updated_at") val updatedAt: String,
+    @SerializedName("members") val members: List<String>,
+    @SerializedName("group_pic") val groupPic: String?,
+    @SerializedName("author") val author: String
+)
+
+
+data class GroupsResponse(
+    val groups: List<GroupResponse>
+)
+data class UserFollowersResponse(
+    val followers: List<UserResponse>
+)
+
+data class UserFollowingsResponse(
+    val followings: List<UserResponse>
+)
+
+
+data class  UserPostResponse(
+    @SerializedName("id") val id: String,
+    @SerializedName("likes") val likes: List<UserResponse>,
+    @SerializedName("comments") val comments: List<UserResponse>,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("content") val content: String,
+    @SerializedName("code") val code: String,
+    @SerializedName("language") val language: String,
+    @SerializedName("updated_at") val updatedAt: String,
+    @SerializedName("image") val image: String?,
+    @SerializedName("author") val author: String
+
+)
+
+data class UserPostsResponse(
+    val posts: List<UserPostResponse>
+)
