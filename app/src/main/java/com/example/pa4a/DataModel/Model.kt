@@ -26,4 +26,6 @@ data class UserResponse(
     @SerializedName("bio") val bio: String?
 )
 
-data class UsersResponse(val users: List<UserResponse>)
+data class UsersResponse(
+    val users: List<UserResponse>
+)

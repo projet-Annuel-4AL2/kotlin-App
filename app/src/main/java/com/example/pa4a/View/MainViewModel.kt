@@ -2,13 +2,9 @@ package com.example.pa4a.view
 
 
 import android.app.Application
-import android.content.Context
-import android.content.Intent
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
-import com.example.pa4a.LoginActivity
 import com.example.pa4a.api.ApiClient
 import com.example.pa4a.core.SessionManager
 import com.example.pa4a.dataModel.UserIdRequest
@@ -25,8 +21,8 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _user = MutableLiveData<UserResponse>()
     val user: LiveData<UserResponse> = _user
 
-    private val _users = MutableLiveData<UsersResponse>()
-    val users : LiveData<UsersResponse> = _users
+    private val _users = MutableLiveData<List<UserResponse>>()
+    val users: LiveData<List<UserResponse>> = _users
     fun getUser() {
         val token = sessionManager.token
         if (token != null) {
@@ -59,17 +55,23 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
         }
     }
     fun getUsers() {
-        ApiClient.userService.getUsers().enqueue(object : Callback<UsersResponse> {
-            override fun onResponse(call: Call<UsersResponse>, response: Response<UsersResponse>) {
+        println("User test")
+        ApiClient.userService.getUsers().enqueue(object : Callback<List<UserResponse>> {
+            override fun onResponse(call: Call<List<UserResponse>>, response: Response<List<UserResponse>>) {
                 if (response.isSuccessful) {
                     _users.value = response.body()
-                    sessionManager.saveUsers(response.body()!!.users)
+                    sessionManager.saveUsers(response.body()!!)
                     println("Users: ${response.body()}")
+
+                }else{
+                    println("Error: ${response.errorBody()}")
+
                 }
             }
 
-            override fun onFailure(call: Call<UsersResponse>, t: Throwable) {
+            override fun onFailure(call: Call<List<UserResponse>>, t: Throwable) {
                 // Handle failure
+                println("getUsers onFailure: ${t.message}")
             }
         })
     }

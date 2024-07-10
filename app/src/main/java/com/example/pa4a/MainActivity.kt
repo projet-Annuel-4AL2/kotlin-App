@@ -17,6 +17,12 @@ class MainActivity : AppCompatActivity() {
         sessionManager = SessionManager(this)
         mainViewModel = ViewModelProvider(this).get(MainViewModel::class.java)
 
+        mainViewModel.users.observe(this, { usersResponse ->
+            println("Observed users response: $usersResponse")
+        })
+
+        mainViewModel.getUsers()
+
 
         //afficher tout ce qui est dans la session
         println("${sessionManager}")

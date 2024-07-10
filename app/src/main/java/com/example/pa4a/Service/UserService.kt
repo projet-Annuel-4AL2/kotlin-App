@@ -6,6 +6,7 @@ import com.example.pa4a.dataModel.RegisterRequest
 import com.example.pa4a.dataModel.RegisterResponse
 import com.example.pa4a.dataModel.UserIdRequest
 import com.example.pa4a.dataModel.UserIdResponse
+import com.example.pa4a.dataModel.UserResponse
 import com.example.pa4a.dataModel.UsersResponse
 import retrofit2.Call
 import retrofit2.http.Body
@@ -16,5 +17,7 @@ import retrofit2.http.GET
 
 interface UserService {
     @GET("users/")
-    fun getUsers(): Call<UsersResponse>
+    //fun getUsers(): Call<UsersResponse>
+    fun getUsers(): Call<List<UserResponse>>
+
 }
