@@ -1,40 +1,64 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:gravity="center"
-    app:cardCornerRadius="70dp"
-    android:layout_margin="30dp"
+    android:layout_margin="20dp"
+    android:background="@android:color/white"
+    app:cardCornerRadius="8dp"
+    app:cardElevation="4dp">
 
-    >
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1C1C1E"
-        android:orientation="horizontal">
+        android:orientation="vertical"
+        android:padding="40dp">
 
-        <TextView
-            android:id="@+id/code"
-            android:layout_width="350dp"
-            android:layout_height="400dp"
-            android:layout_margin="3dp"
-            android:background="@drawable/shape"
-            android:scaleType="centerCrop" />
 
-        <!--<TextView
-            android:id="@+id/username"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:textSize="16sp"
-            android:textStyle="bold"
-            android:layout_margin="3dp"
-            android:textColor="@color/white"
-            android:layout_gravity="center"
+                <TextView
+                    android:id="@+id/author"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:textSize="16sp" />
 
-            />-->
+                <ScrollView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent">
 
-    </LinearLayout>
+                    <jp.wasabeef.richeditor.RichEditor
+                        android:id="@+id/code"
+                        android:layout_width="match_parent"
+                        android:layout_height="200dp"
+                        android:scaleType="centerCrop"
+                        android:layout_marginTop="8dp"
+                        android:background="@color/white"
+                        android:scrollbars="vertical"
+                        />
+                </ScrollView>
+
+                <TextView
+                    android:id="@+id/language"
+                    android:visibility="gone"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="16sp"
+                    android:textStyle="bold"
+                    android:layout_marginTop="8dp" />
+
+
+
+                <TextView
+                    android:id="@+id/created_at"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:textSize="12sp"
+                    android:textColor="#888" />
+
+
+
+        </LinearLayout>
 
 
 </androidx.cardview.widget.CardView>

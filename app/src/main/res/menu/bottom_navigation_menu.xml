@@ -3,21 +3,13 @@
 <item
     android:id="@+id/navigation_contacts"
     android:icon="@drawable/ic_contacts"
-    android:title="Contacts"/>
+    android:title=""/>
 <item
     android:id="@+id/navigation_feed"
     android:icon="@drawable/ic_feed"
-    android:title="Feed"/>
-<item
-    android:id="@+id/navigation_messages"
-    android:icon="@drawable/ic_messages"
-    android:title="Messages"/>
-<item
-    android:id="@+id/navigation_notifications"
-    android:icon="@drawable/ic_notifications"
-    android:title="Notifications"/>
+    android:title=""/>
 <item
     android:id="@+id/navigation_settings"
     android:icon="@drawable/ic_settings"
-    android:title="Settings"/>
+    android:title=""/>
 </menu>

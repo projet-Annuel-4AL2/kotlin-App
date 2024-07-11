@@ -2,6 +2,7 @@ package com.example.pa4a
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -77,6 +78,13 @@ class MainActivity : AppCompatActivity() {
         //val data = sessionManager.getDataBasics()
         //println("Data basics: $data")
 
+
+        userPosts?.forEach { userPost ->
+            if (users != null) {
+                userPost.author = users.find { it.id == userPost.author }?.username.toString()
+            }
+        }
+
         val recyclerView = findViewById<RecyclerView>(R.id.recycler_view)
         val layoutManager = LinearLayoutManager(this)
         layoutManager.orientation = LinearLayoutManager.HORIZONTAL
@@ -87,8 +95,20 @@ class MainActivity : AppCompatActivity() {
         //postRecyclerView.layoutManager = LinearLayoutManager(this)
         postRecyclerView.adapter = PostAdapter(userPosts ?: emptyList())
 
+
+
+        /*postRecyclerView.setOnScrollChangeListener { v, scrollX, scrollY, oldScrollX, oldScrollY ->
+            if (scrollY > oldScrollY) {
+                recyclerView.visibility = View.GONE
+            } else if (scrollY < oldScrollY) {
+                recyclerView.visibility = View.VISIBLE
+            }
+
+        }*/
+
     }
-//recuperer le token en session et ensuite utiliser la function userId
+//recuperer le token en session et ensuite utiliser la functi
+// on userId
     //pour recuperer l'id de l'utilisateur
     //et ensuite utiliser getUser pour recuperer les informations de l'utilisateur
 
