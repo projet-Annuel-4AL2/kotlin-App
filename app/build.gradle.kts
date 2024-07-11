@@ -64,6 +64,15 @@ dependencies {
     implementation("androidx.webkit:webkit:1.4.0")
     implementation("androidx.browser:browser:1.4.0")
     implementation ("com.google.android.material:material:1.4.0")
-
+    //rajouter glide
+    implementation("com.github.bumptech.glide:glide:4.12.0")
+    annotationProcessor("com.github.bumptech.glide:compiler:4.12.0")
+    implementation("com.github.bumptech.glide:annotations:4.12.0")
+    //afichage type code
+    //implementation ("io.noties.markwon:core:4.6.2")
+    //implementation ("io.noties.markwon:syntax-highlight:4.6.2")
+    //imple grammar.GrammarsConfig
+    //implementation ("io.noties:prism4j:2.0.0")
+    //implementation ("io.noties:prism4j-bundler:2.0.0")
 
 }
