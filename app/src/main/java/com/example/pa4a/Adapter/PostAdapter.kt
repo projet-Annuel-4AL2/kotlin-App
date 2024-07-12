@@ -18,7 +18,7 @@ class PostAdapter(private val posts: List<UserPostResponse>) : RecyclerView.Adap
         val code  = view.findViewById<jp.wasabeef.richeditor.RichEditor>(R.id.code)
         val createdAt : TextView = view.findViewById(R.id.created_at)
         //val likes : TextView = view.findViewById(R.id.likes)
-        val language : TextView = view.findViewById(R.id.language)
+        //val language : TextView = view.findViewById(R.id.language)
         // ajoutez d'autres vues ici si nécessaire
     }
 
