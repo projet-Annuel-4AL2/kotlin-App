@@ -65,7 +65,7 @@ data class  UserPostResponse(
     @SerializedName("language") val language: String,
     @SerializedName("updated_at") val updatedAt: String,
     @SerializedName("image") val image: String?,
-    @SerializedName("author") val author: String
+    @SerializedName("author") var author: String
 
 )
 

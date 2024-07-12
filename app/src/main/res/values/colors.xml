@@ -10,6 +10,15 @@
     <color name="mid_blue">#1B79BB</color>
     <color name="custom_button_background_color">#050D38</color>
 
+    <color name="background_primary">#000000</color>
+    <color name="background_secondary">#121212</color>
+    <color name="card_background">#1C1C1E</color>
+    <color name="text_primary">#FFFFFF</color>
+    <color name="text_secondary">#A8A8A8</color>
+    <color name="text_disabled">#666666</color>
+    <color name="accent_blue">#0095F6</color>
+    <color name="notification_red">#ED4956</color>
+
 
     <color name="splashColorPrimary">#800D24</color>
     <color name="splashColorPrimaryDark">#FFFFFF</color>
