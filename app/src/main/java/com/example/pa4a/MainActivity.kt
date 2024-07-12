@@ -2,13 +2,7 @@ package com.example.pa4a
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import com.example.pa4a.Adapter.MyAdapter
-import com.example.pa4a.Adapter.PostAdapter
 import com.example.pa4a.Fragment.HeaderFragment
 import com.example.pa4a.Fragment.HomeFragment
 import com.example.pa4a.Fragment.NavigationFragment
@@ -38,7 +32,7 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun replaceFragment(fragment: Fragment) {
+    fun replaceFragment(fragment: HomeFragment) {
         supportFragmentManager.beginTransaction()
             .replace(R.id.main_content_container, fragment)
             .commit()
