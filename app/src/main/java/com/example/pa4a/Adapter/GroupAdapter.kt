@@ -8,9 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.pa4a.R
+import com.example.pa4a.Utils.OnGroupClickListener
 import com.example.pa4a.dataModel.GroupResponse
 
-class GroupAdapter(private val groups: List<GroupResponse>) : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
+class GroupAdapter(private val groups: List<GroupResponse>, private val listener: OnGroupClickListener) : RecyclerView.Adapter<GroupAdapter.GroupViewHolder>() {
 
     class GroupViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val groupPic: ImageView = view.findViewById(R.id.group_pic)
@@ -33,6 +34,10 @@ class GroupAdapter(private val groups: List<GroupResponse>) : RecyclerView.Adapt
             Glide.with(holder.itemView.context).load(imageUrl) .error(R.drawable.groups).into(holder.groupPic)
         } else {
             holder.groupPic.setImageResource(R.drawable.groups)
+        }
+
+        holder.itemView.setOnClickListener {
+            listener.onGroupClick(group.id)
         }
     }
 

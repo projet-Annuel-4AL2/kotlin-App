@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.pa4a.api.ApiClient
 import com.example.pa4a.core.SessionManager
+import com.example.pa4a.dataModel.GroupPostResponse
 import com.example.pa4a.dataModel.GroupResponse
 import com.example.pa4a.dataModel.UserFollowersResponse
 import com.example.pa4a.dataModel.UserFollowingsResponse
@@ -102,6 +103,45 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         })
     }
+
+    private val _groupInfo = MutableLiveData<GroupResponse>()
+    val groupInfo: LiveData<GroupResponse> = _groupInfo
+    fun getGroupInfo(groupId: Int) {
+        ApiClient.groupService.getGroup(groupId).enqueue(object : Callback<GroupResponse> {
+            override fun onResponse(call: Call<GroupResponse>, response: Response<GroupResponse>) {
+                if (response.isSuccessful) {
+                    _groupInfo.value = response.body()
+                    //println("GroupInfo: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<GroupResponse>, t: Throwable) {
+                // Handle failure
+            }
+        })
+    }
+
+
+    private val _groupInfoPosts = MutableLiveData<List<GroupPostResponse>>()
+    val groupInfoPosts: LiveData<List<GroupPostResponse>> = _groupInfoPosts
+
+    fun getGroupInfoPosts(groupId: Int) {
+        ApiClient.groupService.getGroupPosts(groupId).enqueue(object : Callback<List<GroupPostResponse>> {
+            override fun onResponse(call: Call<List<GroupPostResponse>>, response: Response<List<GroupPostResponse>>) {
+                if (response.isSuccessful) {
+                    _groupInfoPosts.value = response.body()
+                    //println("GroupInfoPosts: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<GroupPostResponse>>, t: Throwable) {
+                // Handle failure
+            }
+        })
+    }
+
+
+
 
     private val _userFollowers = MutableLiveData<UserFollowersResponse>()
     val userFollowers: LiveData<UserFollowersResponse> = _userFollowers

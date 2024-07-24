@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pa4a.Adapter.GroupAdapter
 import com.example.pa4a.R
+import com.example.pa4a.Utils.OnGroupClickListener
 import com.example.pa4a.core.SessionManager
 import com.example.pa4a.view.MainViewModel
 
@@ -38,8 +39,24 @@ class GroupFragment : Fragment() {
 
         mainViewModel.groups.observe(viewLifecycleOwner) { groupResponse ->
             println("Observed group response: $groupResponse")
-            groupRecyclerView.adapter = GroupAdapter(groupResponse ?: emptyList())
+            groupRecyclerView.adapter = GroupAdapter(groupResponse ?: emptyList(), object :
+                OnGroupClickListener {
+                override fun onGroupClick(groupId: String) {
+                    // Handle the click event, e.g., navigate to a detail view
+                    println("Group clicked: $groupId")
+                    //charger groupinfOfragment en mettant le groupid en argument
+                    val groupInfoFragment = GroupInfoFragment()
+                    val bundle = Bundle()
+                    bundle.putString("groupId", groupId)
+                    groupInfoFragment.arguments = bundle
+                    requireActivity().supportFragmentManager.beginTransaction()
+                        .replace(R.id.main_content_container, groupInfoFragment)
+                        .addToBackStack(null)
+                        .commit()
 
+
+                }
+            })
         }
 
 

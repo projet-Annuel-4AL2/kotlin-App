@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,6 +16,7 @@ import com.example.pa4a.view.MainViewModel
 import com.bumptech.glide.Glide
 import com.example.pa4a.dataModel.UserPostResponse
 import com.example.pa4a.dataModel.UserResponse
+
 
 
 class UserProfileFragment : Fragment() {
@@ -43,6 +45,14 @@ class UserProfileFragment : Fragment() {
         mainViewModel.getUser()
         val user = sessionManager.userInfo
         val username = user?.username
+        val userId = user?.id
+
+        val followers = sessionManager.userFollowers
+        val following = sessionManager.userFollowings
+        val countFollowers = followers?.size
+        val countFollowing = following?.size
+
+        print("followessssrs: $followers")
 
 
 
@@ -73,6 +83,9 @@ class UserProfileFragment : Fragment() {
             .placeholder(R.drawable.defaultprofile)
             .into(view.findViewById(R.id.user_profile_image))
 
+        view.findViewById<TextView>(R.id.username_text_view).text = username
+        view.findViewById<TextView>(R.id.followers_text_view).text = "$countFollowers Followers"
+        view.findViewById<TextView>(R.id.following_text_view).text = "$countFollowing Following"
 
         return view
         //return inflater.inflate(R.layout.fragment_user_profile, container, false)
