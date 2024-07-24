@@ -33,6 +33,11 @@ class NavigationFragment : Fragment() {
                     true
                 }
 
+                R.id.navigation_groups -> {
+                    (activity as? MainActivity)?.replaceFragment(GroupFragment())
+                    true
+                }
+
 
                 // Add more cases for other menu items if needed
                 else -> false
