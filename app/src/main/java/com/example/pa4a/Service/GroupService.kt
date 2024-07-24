@@ -1,5 +1,6 @@
 package com.example.pa4a.service
 
+import com.example.pa4a.dataModel.GroupPostResponse
 import com.example.pa4a.dataModel.GroupResponse
 import com.example.pa4a.dataModel.LoginRequest
 import com.example.pa4a.dataModel.LoginResponse
@@ -19,5 +20,11 @@ import retrofit2.http.GET
 interface GroupService {
     @GET("groupe/")
     fun getGroups(): Call<List<GroupResponse>>
+
+    @GET("groupe/inf/{id}/")
+    fun getGroup(@Path("id") id: Int): Call<GroupResponse>
+
+    @GET("groupe/publications/{id}/")
+    fun getGroupPosts(@Path("id") id: Int): Call<List<GroupPostResponse>>
 
 }

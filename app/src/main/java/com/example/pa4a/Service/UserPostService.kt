@@ -22,4 +22,9 @@ import retrofit2.http.GET
 interface UserPostService {
     @GET("post/")
     fun getUserPosts(): Call<List<UserPostResponse>>
+    @GET("post/user/{username}")
+    fun getUserPostsByUsername(@Path("username") username: String): Call<List<UserPostResponse>>
+
+    @GET("post/{id}/get-comment")
+    fun getComments(@Path("id") id: Int): Call<List<UserPostResponse>>
 }

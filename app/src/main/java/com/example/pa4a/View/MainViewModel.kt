@@ -7,6 +7,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.pa4a.api.ApiClient
 import com.example.pa4a.core.SessionManager
+import com.example.pa4a.dataModel.GroupPostResponse
 import com.example.pa4a.dataModel.GroupResponse
 import com.example.pa4a.dataModel.UserFollowersResponse
 import com.example.pa4a.dataModel.UserFollowingsResponse
@@ -35,7 +36,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     if (response.isSuccessful) {
                         val userId = response.body()?.user_id
                         sessionManager.userId = userId
-                        //println("getUser: userId is $userId")
+                        println("getUser: userId is $userId")
                         if (userId != null) {
                             ApiClient.authService.getUser(userId).enqueue(object : Callback<UserResponse> {
                                 override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
@@ -102,6 +103,45 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         })
     }
+
+    private val _groupInfo = MutableLiveData<GroupResponse>()
+    val groupInfo: LiveData<GroupResponse> = _groupInfo
+    fun getGroupInfo(groupId: Int) {
+        ApiClient.groupService.getGroup(groupId).enqueue(object : Callback<GroupResponse> {
+            override fun onResponse(call: Call<GroupResponse>, response: Response<GroupResponse>) {
+                if (response.isSuccessful) {
+                    _groupInfo.value = response.body()
+                    //println("GroupInfo: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<GroupResponse>, t: Throwable) {
+                // Handle failure
+            }
+        })
+    }
+
+
+    private val _groupInfoPosts = MutableLiveData<List<GroupPostResponse>>()
+    val groupInfoPosts: LiveData<List<GroupPostResponse>> = _groupInfoPosts
+
+    fun getGroupInfoPosts(groupId: Int) {
+        ApiClient.groupService.getGroupPosts(groupId).enqueue(object : Callback<List<GroupPostResponse>> {
+            override fun onResponse(call: Call<List<GroupPostResponse>>, response: Response<List<GroupPostResponse>>) {
+                if (response.isSuccessful) {
+                    _groupInfoPosts.value = response.body()
+                    //println("GroupInfoPosts: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<GroupPostResponse>>, t: Throwable) {
+                // Handle failure
+            }
+        })
+    }
+
+
+
 
     private val _userFollowers = MutableLiveData<UserFollowersResponse>()
     val userFollowers: LiveData<UserFollowersResponse> = _userFollowers
@@ -173,6 +213,29 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         })
     }
+
+    //getUserPostsByUsername
+
+    private val _userPostsByUsername = MutableLiveData<List<UserPostResponse>>()
+    val userPostsByUsername: LiveData<List<UserPostResponse>> = _userPostsByUsername
+
+    fun getUserPostsByUsername(username: String) {
+        ApiClient.userPostService.getUserPostsByUsername(username).enqueue(object : Callback<List<UserPostResponse>> {
+            override fun onResponse(call: Call<List<UserPostResponse>>, response: Response<List<UserPostResponse>>) {
+                if (response.isSuccessful) {
+                    _userPostsByUsername.value = response.body()
+                    sessionManager.saveUserPostsByUsername(response.body()!!)
+                    println("UserPostsByUsername: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserPostResponse>>, t: Throwable) {
+                println("getUserPostsByUsername onFailure: ${t.message}")
+            }
+        })
+    }
+
+
 
 
 }

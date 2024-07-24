@@ -72,3 +72,33 @@ data class  UserPostResponse(
 data class UserPostsResponse(
     val posts: List<UserPostResponse>
 )
+
+data class GroupPostResponse(
+    @SerializedName("id") val id: String,
+    @SerializedName("likes") val likes: List<UserResponse>,
+    @SerializedName("comments") val comments: List<UserResponse>,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("content") val content: String,
+    @SerializedName("updated_at") val updatedAt: String,
+    @SerializedName("image") val image: String?,
+    @SerializedName("author") var author: String,
+    @SerializedName("groupe") val group: String
+)
+
+data class GroupPostsResponse(
+    val posts: List<GroupPostResponse>
+)
+
+data class UserPostCommentResponse(
+    @SerializedName("id") val id: String,
+    @SerializedName("created_at") val createdAt: String,
+    @SerializedName("content") val content: String,
+    @SerializedName("updated_at") val updatedAt: String,
+    @SerializedName("image") val image: String?,
+    @SerializedName("author") var author: String,
+    @SerializedName("post") val post: String
+)
+
+data class UserPostCommentsResponse(
+    val comments: List<UserPostCommentResponse>
+)
