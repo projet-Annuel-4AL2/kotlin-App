@@ -22,4 +22,6 @@ import retrofit2.http.GET
 interface UserPostService {
     @GET("post/")
     fun getUserPosts(): Call<List<UserPostResponse>>
+    @GET("post/user/{username}")
+    fun getUserPostsByUsername(@Path("username") username: String): Call<List<UserPostResponse>>
 }

@@ -28,6 +28,11 @@ class NavigationFragment : Fragment() {
                     true
                 }
 
+                R.id.navigation_settings -> {
+                    (activity as? MainActivity)?.replaceFragment(UserProfileFragment())
+                    true
+                }
+
 
                 // Add more cases for other menu items if needed
                 else -> false

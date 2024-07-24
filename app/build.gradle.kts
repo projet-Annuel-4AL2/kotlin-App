@@ -70,6 +70,8 @@ dependencies {
     implementation("com.github.bumptech.glide:annotations:4.12.0")
     implementation ("androidx.cardview:cardview:1.0.0")
     implementation ("jp.wasabeef:richeditor-android:2.0.0")
+    implementation ("de.hdodenhof:circleimageview:3.1.0")
+
     //afichage type code
     //implementation ("io.noties.markwon:core:4.6.2")
     //implementation ("io.noties.markwon:syntax-highlight:4.6.2")

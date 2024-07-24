@@ -35,7 +35,7 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
                     if (response.isSuccessful) {
                         val userId = response.body()?.user_id
                         sessionManager.userId = userId
-                        //println("getUser: userId is $userId")
+                        println("getUser: userId is $userId")
                         if (userId != null) {
                             ApiClient.authService.getUser(userId).enqueue(object : Callback<UserResponse> {
                                 override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
@@ -173,6 +173,29 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
             }
         })
     }
+
+    //getUserPostsByUsername
+
+    private val _userPostsByUsername = MutableLiveData<List<UserPostResponse>>()
+    val userPostsByUsername: LiveData<List<UserPostResponse>> = _userPostsByUsername
+
+    fun getUserPostsByUsername(username: String) {
+        ApiClient.userPostService.getUserPostsByUsername(username).enqueue(object : Callback<List<UserPostResponse>> {
+            override fun onResponse(call: Call<List<UserPostResponse>>, response: Response<List<UserPostResponse>>) {
+                if (response.isSuccessful) {
+                    _userPostsByUsername.value = response.body()
+                    sessionManager.saveUserPostsByUsername(response.body()!!)
+                    println("UserPostsByUsername: ${response.body()}")
+                }
+            }
+
+            override fun onFailure(call: Call<List<UserPostResponse>>, t: Throwable) {
+                println("getUserPostsByUsername onFailure: ${t.message}")
+            }
+        })
+    }
+
+
 
 
 }

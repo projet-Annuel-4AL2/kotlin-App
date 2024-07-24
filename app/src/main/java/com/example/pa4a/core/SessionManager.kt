@@ -139,4 +139,17 @@ class SessionManager(context: Context) {
             val json = prefs.getString("USER_POSTS", null)
             return Gson().fromJson(json, object : TypeToken<List<UserPostResponse>>() {}.type)
         }
+
+
+    fun saveUserPostsByUsername(posts: List<UserPostResponse>) {
+        val editor = prefs.edit()
+        editor.putString("USER_POSTS_BY_USERNAME", Gson().toJson(posts))
+        editor.apply()
+    }
+
+    val userPostsByUsername: List<UserPostResponse>?
+        get() {
+            val json = prefs.getString("USER_POSTS_BY_USERNAME", null)
+            return Gson().fromJson(json, object : TypeToken<List<UserPostResponse>>() {}.type)
+        }
 }
